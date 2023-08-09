@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(''); // setEmail은 함수로써 email의 값을 변경시키는 역할을 한다. 바로 밑에 있는 setPassword 또한 password를 변경시킨다.
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {

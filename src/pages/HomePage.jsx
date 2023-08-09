@@ -28,7 +28,7 @@ const HomePage = () => {
       >
         {goodsList.map((goods, index) => (
           <div key={goods.id}>
-            <Link to={`/goods/${goods.id}`}> {/* Wrap the image inside Link */}
+            <Link to={`/goods/${goods.id}`}> 
               <img
                 src={goods.imgUrl}
                 alt={`Performance Poster ${index}`}
