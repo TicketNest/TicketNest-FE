@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const [goodsList, setPosters] = useState([]);
+  
 
   useEffect(() => {
-    const url = 'http://localhost:8080/api/goods';
+    const url = `${process.env.REACT_APP_URL}/api/goods`;
     axios
       .get(url)
       .then((res) => setPosters(res.data))

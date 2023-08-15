@@ -7,7 +7,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
-    const url = 'http://localhost:8080/api/auth/login';
+    const url = `${process.env.REACT_APP_URL}/api/auth/login`;
     const data = {
       email,
       password,

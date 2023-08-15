@@ -4,13 +4,13 @@ import { useParams } from "react-router-dom";
 import styled from 'styled-components';
 import { cookies } from '../shared/cookie';
 
-const GoodsList = (props) => {
+const GoodsList = () => {
   const [goods, setDetail] = useState({});
   const goodsid = useParams() // URL에서 goodsId 추출
 
   useEffect(() => {
-    const url = `http://localhost:8080/api/goods/${goodsid.id}`;
-    
+    const url = `${process.env.REACT_APP_URL}/api/goods/${goodsid.id}`;
+    console.log(url);
     axios
       .get(url)
       .then((res) => setDetail(res.data))
@@ -19,23 +19,25 @@ const GoodsList = (props) => {
 
   const handleBooking = async () => {
     // 예매 로직 구현
-    const bookingUrl = `http://localhost:8080/api/booking/${goodsid.id}`;
+    const bookingUrl = `${process.env.REACT_APP_URL}/api/booking/${goodsid.id}`;
     const access_token = cookies.get('Authorization');
-    
+    console.log(access_token)
     axios
-      .get(
+      .post(
         bookingUrl,
         {
           headers: {
-            Access_Token: `${access_token}`,
+            // 'Authorization': access_token
+            'Authorization': 'Bearer ' + access_token
           },
         }
       )
       .then((res) => {
-        console.log(res.data);
+        alert('공연 예매 완료')
       })
       .catch((err) => {
         console.error(err);
+        alert('공연 예매 실패')
       });
 
   };

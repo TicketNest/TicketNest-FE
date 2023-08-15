@@ -12,7 +12,7 @@ const SignupPage = () => {
 
 
   const handleSignUp = async () => {
-    const url = 'http://localhost:8080/api/auth/signup';
+    const url = `${process.env.REACT_APP_URL}/api/auth/signup`;
     const data = {
       email,
       password,
