@@ -9,6 +9,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const url = `${process.env.REACT_APP_URL}/api/goods`;
+    console.log(url);
     axios
       .get(url)
       .then((res) => setPosters(res.data))
