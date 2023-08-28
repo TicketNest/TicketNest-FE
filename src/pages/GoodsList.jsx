@@ -46,7 +46,7 @@ const GoodsList = () => {
   };
 
   useEffect(() => {
-    const socket = io(`${process.env.REACT_APP_SOCKET_URL}/TicketNest-socket`);
+    const socket = io(`${process.env.REACT_APP_SOCKET_URL}/TicketNest-socket`,{withCredentials: true});
 
 
     socket.on('connect', () => {
