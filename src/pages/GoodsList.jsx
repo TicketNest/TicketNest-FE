@@ -45,24 +45,25 @@ const GoodsList = () => {
       });
   };
 
-  useEffect(() => {
-    const socket = io(`${process.env.REACT_APP_SOCKET_URL}/TicketNest-socket`,{withCredentials: true});
+  //! 소켓 오류로 인한 주석 처리
+  // useEffect(() => {
+  //   const socket = io(`${process.env.REACT_APP_SOCKET_URL}/TicketNest-socket`,{withCredentials: true});
 
 
-    socket.on('connect', () => {
-      console.log('Connected to server');
-      socket.emit('TicketNest-socket');
-    });
+  //   socket.on('connect', () => {
+  //     console.log('Connected to server');
+  //     socket.emit('TicketNest-socket');
+  //   });
 
-    socket.on('waiting', (message) => {
-      console.log('message:',message)
-      setWaitlistMessage(message);
-    });
+  //   socket.on('waiting', (message) => {
+  //     console.log('message:',message)
+  //     setWaitlistMessage(message);
+  //   });
 
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
+  //   return () => {
+  //     socket.disconnect();
+  //   };
+  // }, []);
 
 
 
