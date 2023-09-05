@@ -7,6 +7,7 @@ const SignupPage = () => {
   const [email, setEmail] = useState(''); // 자동 재렌더링을 위한 useState 사용
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
+  const [nickname, setNickname] = useState('');
 
     
 
@@ -17,6 +18,7 @@ const SignupPage = () => {
       email,
       password,
       confirm,
+      nickname
     };
     try {
       const response = await axios.post(url, data,{ withCredentials: true });
@@ -69,6 +71,17 @@ const SignupPage = () => {
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
             />
+
+            <label style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              Nickname:
+            </label>
+            <input
+              style={{ marginBottom: '15px' }}
+              type="password"
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+            />
+
             <button
               style={{ marginBottom: '30px', padding: '10px' }}
               onClick={handleSignUp}

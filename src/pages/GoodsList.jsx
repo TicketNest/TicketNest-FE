@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams } from "react-router-dom";
 import styled from 'styled-components';
 import { cookies } from '../shared/cookie';
-import { io } from 'socket.io-client';
+// import { io } from 'socket.io-client';
 
 const GoodsList = () => {
   const [goods, setDetail] = useState({});
