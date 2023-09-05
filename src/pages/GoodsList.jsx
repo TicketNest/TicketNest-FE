@@ -6,41 +6,18 @@ import { cookies } from '../shared/cookie';
 import { io } from 'socket.io-client';
 
 const GoodsList = () => {
-  // const [goods, setDetail] = useState({});
+  const [goods, setDetail] = useState({});
   const goodsid = useParams() // URL에서 goodsId 추출
   const [waitlistMessage, setWaitlistMessage] = useState("아직 예매를 하지 않으셨네요")
-    // Add these new state variables
-  const [goods, setGoods] = useState([]);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
 
-
-  // New fetchGoods function
-  const fetchGoods = async () => {
-    try {
-      const url = `${process.env.REACT_APP_URL}/api/goods?page=${page}`;
-      const res = await axios.get(url);
-
-      if (res.data.length > 0) {
-        setGoods(prevGoods => [...prevGoods, ...res.data]);
-        setPage(prevPage => prevPage + 1);
-      } else {
-        setHasMore(false);
-      }
-    } catch (error) {
-      console.error("An error occurred while fetching data: ", error);
-    }
-  };
-  // useEffect(() => {
-  //   console.log(process.env.REACT_APP_URL);
-
-  //   const url = `${process.env.REACT_APP_URL}/api/goods/${goodsid.id}`;
-  //   // console.log(url);
-  //   axios
-  //     .get(url)
-  //     .then((res) => setDetail(res.data))
-  //     .catch((err) => console.error(err));
-  // }, [goodsid]);
+  useEffect(() => {
+    const url = `${process.env.REACT_APP_URL}/api/goods/${goodsid.id}`;
+    // console.log(url);
+    axios
+      .get(url)
+      .then((res) => setDetail(res.data))
+      .catch((err) => console.error(err));
+  }, [goodsid]);
 
   const handleBooking = async () => {
     // 예매 로직 구현
@@ -68,23 +45,6 @@ const GoodsList = () => {
       });
   };
 
-  // New useEffect for infinite scrolling
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-
-      if (hasMore && scrollTop + clientHeight >= scrollHeight - 10) {
-        fetchGoods();
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [hasMore]);
-
   //! 소켓 오류로 인한 주석 처리
   // useEffect(() => {
   //   const socket = io(`${process.env.REACT_APP_SOCKET_URL}/TicketNest-socket`,{withCredentials: true});
@@ -105,9 +65,7 @@ const GoodsList = () => {
   //   };
   // }, []);
 
-  useEffect(() => {
-    fetchGoods();  // Initial data fetch
-  }, []);
+
 
   return (
     <GoodsContainer>
