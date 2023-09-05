@@ -13,18 +13,13 @@ const SignupPage = () => {
 
   const handleSignUp = async () => {
     const url = `${process.env.REACT_APP_URL}/api/auth/signup`;
-    
     const data = {
       email,
       password,
       confirm,
     };
-    // console.log(data)
-
     try {
-      
       const response = await axios.post(url, data,{ withCredentials: true });
-      
       if (response.status === 201){
         alert("회원가입 성공")
         window.location.href = '/';
