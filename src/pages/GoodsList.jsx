@@ -50,7 +50,6 @@ const GoodsList = () => {
   const handleCancelBooking = async () => {
     const cancelUrl = `${process.env.REACT_APP_URL}/api/booking/${goodsid.id}`;
     const access_token = cookies.get('Authorization');
-    console.log('cancel_access_token:',access_token);
     axios.delete(
       cancelUrl,
       {
