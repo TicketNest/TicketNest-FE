@@ -26,6 +26,7 @@ const GoodsList = () => {
     const bookingUrl = `${process.env.REACT_APP_URL}/api/booking/${goodsid.id}`;
     // console.log(bookingUrl);
     const access_token = cookies.get('Authorization');
+    console.log(access_token);
     axios
       .post(
         bookingUrl,
@@ -50,6 +51,7 @@ const GoodsList = () => {
   const handleCancelBooking = async () => {
     const cancelUrl = `${process.env.REACT_APP_URL}/api/booking/${goodsid.id}`;
     const access_token = cookies.get('Authorization');
+    console.log(access_token)
     axios.delete(
       cancelUrl,
       {
