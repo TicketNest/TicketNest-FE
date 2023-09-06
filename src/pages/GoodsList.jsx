@@ -26,6 +26,10 @@ const GoodsList = () => {
     const bookingUrl = `${process.env.REACT_APP_URL}/api/booking/${goodsid.id}`;
     // console.log(bookingUrl);
     const access_token = cookies.get('Authorization');
+    if (!access_token) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
     console.log(access_token);
     axios
       .post(
@@ -36,6 +40,7 @@ const GoodsList = () => {
             // 'Authorization': access_token
             'Authorization': 'Bearer ' + access_token
           },
+          withCredentials: true
         }
       )
       .then((res) => {
@@ -52,12 +57,17 @@ const GoodsList = () => {
     const cancelUrl = `${process.env.REACT_APP_URL}/api/booking/${goodsid.id}`;
     const access_token = cookies.get('Authorization');
     console.log(access_token)
+    if (!access_token) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
     axios.delete(
       cancelUrl,
       {
         headers: {
           'Authorization': 'Bearer ' + access_token
         },
+        withCredentials: true
       }
     )
     .then((res) => {
