@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import secureLocalStorage from 'react-secure-storage';
 
 const LoginPage = () => {
   const [email, setEmail] = useState(''); // setEmail은 함수로써 email의 값을 변경시키는 역할을 한다. 바로 밑에 있는 setPassword 또한 password를 변경시킨다.

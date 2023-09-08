@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from "react-router-dom";
 import styled from 'styled-components';
 import { cookies } from '../shared/cookie';
+import secureLocalStorage from 'react-secure-storage';
 // import { io } from 'socket.io-client';
 
 const GoodsList = () => {
@@ -27,21 +28,19 @@ const GoodsList = () => {
     // console.log(bookingUrl);
     const access_token = cookies.get('Authorization');
     console.log(access_token);
-    if (!access_token) {
-      alert('로그인이 필요합니다.');
-      return;
-    }
+    // if (!access_token) {
+    //   alert('로그인이 필요합니다.');
+    //   return;
+    // }
     axios
       .post(
         bookingUrl,
         // {userId: 1},
-        {
-          headers: {
-            // 'Authorization': access_token
-            'Authorization': 'Bearer ' + access_token
-          },
-          withCredentials: true
-        }
+        // {
+        //   headers: {
+        //     'Authorization': 'Bearer ' + access_token
+        //   },
+        // }
       )
       .then((res) => {
         alert('공연 예매 완료')
@@ -57,18 +56,18 @@ const GoodsList = () => {
     const cancelUrl = `${process.env.REACT_APP_URL}/api/booking/${goodsid.id}`;
     const access_token = cookies.get('Authorization');
     console.log(access_token)
-    if (!access_token) {
-      alert('로그인이 필요합니다.');
-      return;
-    }
+    // if (!access_token) {
+    //   alert('로그인이 필요합니다.');
+    //   return;
+    // }
     axios.delete(
       cancelUrl,
-      {
-        headers: {
-          'Authorization': 'Bearer ' + access_token
-        },
-        withCredentials: true
-      }
+      // {
+      //   headers: {
+      //     'Authorization': 'Bearer ' + access_token
+      //   },
+      //   withCredentials: true
+      // }
     )
     .then((res) => {
       alert('공연 예매 취소 완료');
